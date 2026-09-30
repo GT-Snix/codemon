@@ -69,7 +69,7 @@ async function putProduct(req, res) {
 
 async function patchProduct(req, res) {
     try {
-        const product = await patchProduct(
+        const product = await patchProductService(
             req.params.id,
             req.body
         );
@@ -89,7 +89,7 @@ async function patchProduct(req, res) {
 
 async function deleteProduct(req, res) {
     try {
-        const product = await deleteProduct(req.params.id);
+        const product = await deleteProductService(req.params.id);
 
         if (!product) {
             return res.status(404).send('Product not found');
