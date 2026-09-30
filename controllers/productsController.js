@@ -3,8 +3,8 @@ const {
     getProductById,
     createProduct,
     updateProduct,
-    patchProduct,
-    deleteProduct
+    patchProduct: patchProductService,
+    deleteProduct: deleteProductService
 } = require('../services/productsService');
 
 const { clearCache } = require('../middleware/cacheware');
