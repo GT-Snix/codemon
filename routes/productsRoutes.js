@@ -5,9 +5,11 @@ const {
     getProduct
 } = require('../controllers/productsController');
 
+const cacheware = require('../middleware/cacheware');
+
 const router = express.Router();
 
-router.get('/products', getAllProducts);
-router.get('/products/:id', getProduct);
+router.get('/products', cacheware, getAllProducts);
+router.get('/products/:id', cacheware, getProduct);
 
 module.exports = router;
