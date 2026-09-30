@@ -8,7 +8,6 @@ function cacheware(req, res, next) {
         res.set('X-Cache', 'HIT');
         return res.json(cached.data);
     }
-
     res.set('X-Cache', 'MISS');
     const originalJson = res.json.bind(res);
     res.json = (data) => {
@@ -21,4 +20,12 @@ function cacheware(req, res, next) {
     next();
 }
 
-module.exports = cacheware;
+function clearCache() {
+    Object.keys(cache).forEach(key => {
+        delete cache[key];
+    });
+}
+module.exports = {
+    cacheware,
+    clearCache
+};
