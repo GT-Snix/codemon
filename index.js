@@ -1,12 +1,13 @@
 const express = require('express');
-
-const productRoutes = require('./routes/productsRoutes');
+const productsRoutes = require('./routes/productsRoutes');
 
 const app = express();
 const port = 3000;
 
-app.use(productRoutes);
+app.use(express.json());
+
+app.use('/', productsRoutes);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });

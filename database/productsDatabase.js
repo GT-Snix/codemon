@@ -4,12 +4,8 @@ const path = require('path');
 const pathToFile = path.join(__dirname, '../db.json');
 
 async function readFile() {
-    try {
-        const data = await fs.readFile(pathToFile, 'utf8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error(err);
-    }
+    const data = await fs.readFile(pathToFile, 'utf8');
+    return JSON.parse(data);
 }
 
 async function readFileWithDelay() {
@@ -20,6 +16,17 @@ async function readFileWithDelay() {
     return await readFile();
 }
 
+async function writeFile(products) {
+    await fs.writeFile(
+        pathToFile,
+        JSON.stringify(products, null, 2)
+    );
+
+    return products;
+}
+
 module.exports = {
-    readFileWithDelay
+    readFileWithDelay,
+    readFile,
+    writeFile
 };
